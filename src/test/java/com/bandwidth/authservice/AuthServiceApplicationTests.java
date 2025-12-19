@@ -1,4 +1,4 @@
-package com.bandwidth.auth_service;
+package com.bandwidth.authservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
