@@ -1,5 +1,6 @@
 package com.bandwidth.authservice.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,11 +23,8 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private static final List<String> ALLOWED_ORIGINS = Arrays.asList(
-            "http://localhost:8081",
-            "http://10.0.0.5:8081",
-            "http://10.0.0.8:8081"
-    );
+    @Value("${app.allowed.origins:http://localhost:8081}")
+    private List<String> allowedOrigins;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -72,7 +70,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // IMPORTANT: Use the static list defined above for allowed frontend origins
-        configuration.setAllowedOrigins(ALLOWED_ORIGINS);
+        configuration.setAllowedOrigins(allowedOrigins);
 
         // Allows all HTTP methods (POST, GET, PUT, DELETE, OPTIONS)
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
