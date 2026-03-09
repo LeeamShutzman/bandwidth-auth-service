@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Allow unauthenticated access to the login endpoint
                         .requestMatchers("/api/v1/auth/login").permitAll()
+                        .requestMatchers("/error").permitAll()
                         // All other requests require authentication (though this service only has login)
                         .anyRequest().authenticated()
                 )

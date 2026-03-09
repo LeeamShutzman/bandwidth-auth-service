@@ -33,6 +33,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         } catch (FeignException e) {
             log.error("Feign error body: {}", e);
             throw e;
+        }catch (Exception e){
+
+            throw e;
         }
 
         if (credentials == null) {

@@ -4,6 +4,7 @@ import com.bandwidth.authservice.dto.AuthResponseDTO;
 import com.bandwidth.authservice.dto.LoginRequestDTO;
 import com.bandwidth.authservice.service.AuthService;
 import com.bandwidth.authservice.service.JwtService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class AuthController {
     public AuthController(AuthService authService){this.authService = authService;}
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO loginRequest) {
+    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequest) {
         return authService.login(loginRequest);
     }
 }
